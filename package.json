@@ -1,0 +1,12 @@
+{
+    "name": "ikwezi",
+    "lockfileVersion": 3,
+    "requires": true,
+    "scripts": {
+        "deploy": "gh-pages -d ."
+    },
+    "packages": {},
+    "devDependencies": {
+        "gh-pages": "^6.3.0"
+    }
+}
