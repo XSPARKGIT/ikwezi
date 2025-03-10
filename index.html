@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X Spark - Coming Soon</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, 
+                rgba(253, 224, 71, 0.2) 0%, /* Ikwezi yellow with opacity */
+                rgba(21, 128, 61, 0.1) 100% /* Ikwezi green with opacity */
+            );
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+
+        .countdown-unit {
+            background-color: rgba(253, 224, 71, 0.1); /* Light yellow background */
+            border: 1px solid rgba(21, 128, 61, 0.2); /* Subtle green border */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            min-width: 100px;
+            margin: 0.5rem;
+            box-shadow: 0 4px 6px rgba(21, 128, 61, 0.1);
+        }
+
+        .bg-ikwezi-yellow-20 {
+            background-color: rgba(253, 224, 71, 0.2);
+        }
+
+        .text-ikwezi-green {
+            color: #15803d;
+        }
+
+        /* Add subtle hover effect to countdown units */
+        .countdown-unit:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-custom">
+    <div class="min-h-screen flex flex-col justify-center items-center p-6">
+        <div class="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="p-8 md:p-12">
+                <div class="flex flex-col items-center">
+                    <!-- Logo -->
+                    <div class="w-56 h-56 md:w-64 md:h-64 mb-6 animate-fade-in">
+                        <img 
+                            src="images/LOGO.png" 
+                            alt="X Spark Logo" 
+                            class="w-full h-full object-contain"
+                        />
+                    </div>
+                    
+                    <!-- Under Construction Banner -->
+                    <div class="flex items-center gap-2 bg-ikwezi-yellow-20 text-ikwezi-green px-4 py-2 rounded-full mb-6 animate-pulse-slow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="8" rx="1"></rect>
+                            <path d="M17 14v7"></path>
+                            <path d="M7 14v7"></path>
+                            <path d="M17 3v3"></path>
+                            <path d="M7 3v3"></path>
+                            <path d="M10 14L2 14"></path>
+                            <path d="M22 14L14 14"></path>
+                        </svg>
+                        <span class="font-semibold">Under Construction</span>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div class="text-center max-w-2xl animate-fade-in">
+                        <h1 class="text-3xl md:text-4xl font-bold mb-3 text-gray-800">We're Building Something Amazing</h1>
+                        <p class="text-lg text-gray-600 mb-8">
+                            Our new website is on its way. We're working hard to bring you an exceptional experience.
+                            Stay tuned for our launch!
+                        </p>
+                        
+                        <!-- Countdown Timer -->
+                        <h2 class="text-xl font-semibold mb-4 text-gray-700">Launching In</h2>
+                        <div id="countdown" class="flex flex-wrap justify-center gap-4">
+                            <div class="countdown-unit">
+                                <div id="days" class="text-3xl font-bold">00</div>
+                                <div class="text-sm text-gray-500">Days</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div id="hours" class="text-3xl font-bold">00</div>
+                                <div class="text-sm text-gray-500">Hours</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div id="minutes" class="text-3xl font-bold">00</div>
+                                <div class="text-sm text-gray-500">Minutes</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div id="seconds" class="text-3xl font-bold">00</div>
+                                <div class="text-sm text-gray-500">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>© <span id="currentYear"></span> X Spark. All rights reserved.</p>
+            <p class="mt-2">Designed by X Spark</p>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Set the target date (45 days from now)
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 45);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = "Launch Time!";
+            }
+        }
+
+        // Update the countdown every second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html> 
