@@ -1,4 +1,5 @@
 {
+    "homepage": "https://xspark.github.io/ikwezi",
     "name": "ikwezi",
     "version": "1.0.0",
     "description": "X Spark Coming Soon Page",
@@ -6,14 +7,13 @@
     "requires": true,
     "scripts": {
         "start": "npx serve",
-        "predeploy": "echo 'Preparing files for deployment...'",
-        "deploy": "gh-pages -d .",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist",
         "build": "echo 'No build step needed for static site'"
     },
     "packages": {},
     "devDependencies": {
         "gh-pages": "^6.3.0",
         "serve": "^14.2.1"
-    },
-    "homepage": "https://xspark.github.io/ikwezi"
+    }
 }
