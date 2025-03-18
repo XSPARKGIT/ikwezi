@@ -124,45 +124,7 @@
         </footer>
     </div>
 
-    <script>
-        console.log("Script is running");  // Debug line
-
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Calculate target date (45 days from now)
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 45);
-        console.log("Target date:", targetDate);  // Debug line
-
-        function updateCountdown() {
-            const now = new Date();
-            const timeLeft = targetDate - now;
-
-            console.log("Updating countdown...");  // Debug line
-
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            // Debug lines
-            console.log("Time values:", { days, hours, minutes, seconds });
-
-            try {
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            } catch (error) {
-                console.error("Error updating elements:", error);
-            }
-        }
-
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        // Initial call
-        updateCountdown();
-    </script>
+    <!-- Import the timer script -->
+    <script src="timer.js"></script>
 </body>
-</html> 
+</html>
