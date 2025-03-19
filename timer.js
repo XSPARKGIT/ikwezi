@@ -1,21 +1,13 @@
-
 // Function to initialize or retrieve the countdown end date
 function getCountdownEndDate() {
-    // Check if we already have a saved end date
-    const savedEndDate = localStorage.getItem('countdownEndDate');
+    // Set a fixed deployment date (March 19, 2025)
+    const deploymentDate = new Date('2025-03-19T00:00:00');
     
-    if (savedEndDate) {
-        return new Date(parseInt(savedEndDate));
-    } else {
-        // First time visitor - set end date to 45 days from now
-        const endDate = new Date();
-        endDate.setDate(endDate.getDate() + 45);
-        
-        // Save the end date to localStorage
-        localStorage.setItem('countdownEndDate', endDate.getTime().toString());
-        
-        return endDate;
-    }
+    // Calculate end date (45 days from deployment)
+    const endDate = new Date(deploymentDate);
+    endDate.setDate(deploymentDate.getDate() + 45);
+    
+    return endDate;
 }
 
 // Calculate time remaining until target date
